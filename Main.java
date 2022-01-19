@@ -9,5 +9,12 @@ class Main {
   public static void main(String[] args) {
     ProgressContainer cont = new ProgressContainer(0, 100);
     ProgressBar icon = new ProgressBar(cont);
+    for ( ; cont.getProgress() < cont.getTotal(); cont.setProgress(cont.getProgress() + 1)) {
+      try {
+        Thread.sleep(100);
+      }catch(Exception ex){
+        Thread.currentThread().interrupt();
+      }
+    }
   }
 }
