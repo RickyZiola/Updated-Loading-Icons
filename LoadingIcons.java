@@ -9,14 +9,20 @@ public class LoadingIcons {
       if (type == "bar") {
         do {
           System.out.print("|");
-          for(int i = 1; i <= 20; i++){
-            if((cont.getProgress() + 0.1) / cont.getTotal() >= i / 20) {
+          int i;
+          for(i = 1; i <= 20; i++){
+            if((cont.getProgress()) / (cont.getTotal()) < i / 20) {
               System.out.print("█");
             }else{
               System.out.print(" ");
             }
-            System.out.print("|\r");
           }
+          try {
+            Thread.sleep(10);
+          } catch (Exception ex) {
+            Thread.currentThread().interrupt();
+          }
+          System.out.print("| " + cont.getProgress() + cont.getTotal() + "\r");
         } while (cont.getProgress() <= cont.getTotal());
       }
     }
