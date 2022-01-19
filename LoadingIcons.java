@@ -1,6 +1,4 @@
 public class LoadingIcons {
-  double progress;
-  double total;
   String type = "";
   ProgressContainer cont;
 
@@ -9,20 +7,19 @@ public class LoadingIcons {
       if (type == "bar") {
         do {
           System.out.print("|");
-          int i;
-          for(i = 1; i <= 20; i++){
-            if((cont.getProgress()) / (cont.getTotal()) < i / 20) {
+          for(int i = 1; i <= 20; i++){
+            if(cont.getTotal() / (cont.getProgress() + 0.001) * 100 <= 20 / i * 100) {
               System.out.print("█");
             }else{
               System.out.print(" ");
             }
           }
           try {
-            Thread.sleep(10);
+            Thread.sleep(1);
           } catch (Exception ex) {
             Thread.currentThread().interrupt();
           }
-          System.out.print("| " + cont.getProgress() + cont.getTotal() + "\r");
+          System.out.print("| " + (int) (cont.getProgress() / cont.getTotal() * 100) + "%\r");
         } while (cont.getProgress() <= cont.getTotal());
       }
     }
@@ -30,11 +27,11 @@ public class LoadingIcons {
 }
 class ProgressBar extends LoadingIcons {
     /**
-    @param cont A ProgressBar object to pass the progress and total
+    * @param cont A ProgressBar object to pass the progress and total.
+    *
+    * This is the constructor to create a progress bar. It uses a thread to update itself, so you can continue with what you want to monitor progress on. You use the {@link ProgressContainer.setProgress(double toSet)} method to set the progress.
     */
     ProgressBar(ProgressContainer cont){
-      progress = cont.getProgress();
-      total = cont.getTotal();
       type = "bar";
       this.cont = cont;
       UpdaterThread thrd = new UpdaterThread();

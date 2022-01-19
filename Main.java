@@ -9,9 +9,9 @@ class Main {
   public static void main(String[] args) {
     ProgressContainer cont = new ProgressContainer(0, 100);
     ProgressBar icon = new ProgressBar(cont);
-    for ( ; cont.getProgress() < cont.getTotal(); cont.setProgress(cont.getProgress() + 1)) {
+    for ( ; cont.getProgress() < 100; cont.setProgress(cont.getProgress() + 0.1)) {
       try {
-        Thread.sleep(100);
+        Thread.sleep(10);
       }catch(Exception ex){
         Thread.currentThread().interrupt();
       }
