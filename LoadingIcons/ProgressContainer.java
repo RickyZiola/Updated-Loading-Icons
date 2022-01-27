@@ -1,17 +1,19 @@
+package LoadingIcons;
+
 public class ProgressContainer {
   private double progress;
   private double total;
-  ProgressContainer (double progress, double total){
+  public ProgressContainer (double progress, double total){
     this.progress = progress;
     this.total = total;
   }
-  double getProgress () {
+  public double getProgress () {
     return progress;
   } 
-  double getTotal () {
+  public double getTotal () {
     return total;
   }
-  void setProgress (double toSet) {
+  public void setProgress (double toSet) {
     progress = toSet;
   }
 }
